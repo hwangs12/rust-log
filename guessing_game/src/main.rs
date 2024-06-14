@@ -8,6 +8,7 @@ fn main() {
     let mut guess = String::new();
 
     io::stdin()
+        // references are mutable by default as well
         .read_line(&mut guess)
         .expect("Failed to read line");
 
