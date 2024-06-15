@@ -27,16 +27,24 @@ fn main() {
 
     println!("The secret number is: {secret_number}");
 
-    println!("Please input your guess.");
-
-    let mut gues = String::new();
-
-    io::stdin()
+    
+    loop {
+        println!("Please input your guess.");
+        
+        let mut gues = String::new();
+        
+        io::stdin()
         .read_line(&mut gues)
         .expect("Failed to read line");
-    
-    let gues: u32 = gues.trim().parse().expect("Please type a number!");
-    loop {
+        
+        let gues: u32 = match gues.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Invalid input. Please input number");
+                continue;
+            }
+        };
+        // let gues: gues.trim().parse().expect("Please type a number!");
         println!("You guessed: {gues}");
     
         match gues.cmp(&secret_number) {
